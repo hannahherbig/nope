@@ -7,5 +7,6 @@ require 'rubygems' unless defined?(Gem)
 require 'bundler/setup'
 Bundler.require(:default, PADRINO_ENV)
 require 'yaml'
+require 'open-uri'
 
 Padrino.load!

@@ -1,6 +1,10 @@
 class User < Sequel::Model
   one_to_many :statuses
 
+  def before_create
+    self.created_at = Time.now
+  end
+
   def self.register(username, password)
     if User[:username => username] || %w(list new create destroy).include?(username)
       nil
@@ -8,7 +12,6 @@ class User < Sequel::Model
       user = User.new
       user.username = username
       user.password = password
-      user.created_at = Time.now
       user.save
     end
   end
@@ -21,7 +24,6 @@ class User < Sequel::Model
     status = Status.new
     status.user = self
     status.text = text
-    status.created_at = Time.now
     status.save
   end
 end

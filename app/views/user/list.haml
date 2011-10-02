@@ -1,8 +1,11 @@
 %table
-  %tr
-    %th Username
-    %th Time registered
-  - users.each do |user|
+  - if users.empty?
+    %p No users to show.  You could be the first!
+  - else
     %tr
-      %td= link_to user.username, url_for(:user, :index, :username => user.username)
-      %td= user.created_at
+      %th Username
+      %th Time registered
+      - users.each do |user|
+        %tr
+          %td= link_to user.username, url_for(:user, :index, :username => user.username)
+          %td= user.created_at

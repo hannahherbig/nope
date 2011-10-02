@@ -1,10 +1,13 @@
 %table
-  %tr
-    %th User
-    %th Text
-    %th Time
-  - statuses.each do |status|
+  - if statuses.empty?
+    %p No statuses to show.  Yours could be the first!
+  - else
     %tr
-      %td= link_to status.user.username, url_for(:user, :index, :username => status.user.username)
-      %td= status.text
-      %td= status.created_at
+      %th Username
+      %th Status text
+      %th Time posted
+    - statuses.each do |status|
+      %tr
+        %td= link_to status.user.username, url_for(:user, :index, :username => status.user.username)
+        %td= status.text
+        %td= status.created_at

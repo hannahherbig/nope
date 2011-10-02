@@ -13,21 +13,30 @@ Nope.controllers :status do
       end
     else
       flash[:error] = "You need to be logged in to do that."
-      render "session/new"
+      redirect url_for(:session, :new)
     end
   end
 
   get :list do
-    title "Users"
-    render "user/list"
+    redirect url_for(:index)
   end
 
-  get :index, :with => :id do
-    @user = User[params[:id]]
-    if @user
-      raise
+  get :destroy, :with => :id do
+    status = Status[params[:id]]
+    if status.nil?
+      raise 404
+    elsif current_user
+      if status.user == current_user
+        status.delete
+        flash[:notice] = "Status deleted"
+        redirect url_for(:index)
+      else
+        flash[:error] = "You don't own that status."
+        redirect url_for(:index)
+      end
     else
-      error 404
+      flash[:error] = "You need to be logged in to do that."
+      redirect url_for(:session, :new)
     end
   end
 end

@@ -11,3 +11,5 @@
         %td= link_to status.user.username, url_for(:user, :index, :username => status.user.username)
         %td= status.text
         %td= status.created_at
+        - if status.user == current_user
+          %td= link_to "Delete", url_for(:status, :destroy, :id => status.id)

@@ -7,13 +7,14 @@ Nope.controllers :user do
   post :create do
     title "Sign up"
     u = params[:user]
-    @user = User.register(u[:username], u[:password])
-    if @user
+    user = User.register(u[:username], u[:password])
+    if user
+      session[:user_id] = user.id
       flash[:notice] = "Signed up!"
       redirect url_for(:index)
     else
       flash[:error] = "Someone already has that name!"
-      render "user/new"
+      redirect url_for(:user, :new)
     end
   end
 

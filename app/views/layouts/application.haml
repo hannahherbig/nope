@@ -15,4 +15,5 @@
       - else
         = link_to 'Log out', url_for(:session, :destroy)
         = link_to 'Post new', url_for(:status, :new)
+      = link_to 'Public timeline', url_for(:index)
       = link_to 'Users', url_for(:user, :list)

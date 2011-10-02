@@ -26,4 +26,13 @@ Nope.helpers do
       User.order(:created_at).all
     end
   end
+
+  def need_login!
+    flash[:error] = "You need to be logged in to do that."
+    redirect url_for(:session, :new)
+  end
+  
+  def random_sentence
+    Nokogiri::HTML(open("http://watchout4snakes.com/CreativityTools/RandomSentence/RandomSentence.aspx")).css('.randomSentence').first.text
+  end
 end

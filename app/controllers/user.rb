@@ -23,6 +23,18 @@ Nope.controllers :user do
     render "user/list"
   end
 
+  get :destroy do
+    if current_user
+      Status[:user => current_user].delete
+      current_user.delete
+      session[:user_id] = nil
+      flash[:notice] = "User deleted"
+      redirect url_for(:index)
+    else
+      need_login!
+    end
+  end
+
   get :index, :with => :username do
     title "User timeline"
     user = User[:username => params[:username]]

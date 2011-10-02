@@ -20,6 +20,7 @@ GEM
       treetop (~> 1.4.8)
     mime-types (1.16)
     multi_json (1.0.3)
+    nokogiri (1.5.0)
     padrino (0.10.2)
       padrino-admin (= 0.10.2)
       padrino-cache (= 0.10.2)
@@ -74,6 +75,7 @@ PLATFORMS
 
 DEPENDENCIES
   haml
+  nokogiri
   padrino
   rack-flash
   sequel

@@ -7,3 +7,6 @@ gem 'sequel'
 gem 'sqlite3'
 gem 'haml'
 gem 'rack-flash'
+
+gem 'nokogiri'
+

@@ -9,3 +9,5 @@
         %tr
           %td= link_to user.username, url_for(:user, :index, :username => user.username)
           %td= user.created_at
+          - if user == current_user
+            %td= link_to "Delete", url_for(:user, :destroy)

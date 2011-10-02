@@ -2,7 +2,7 @@ class User < Sequel::Model
   one_to_many :statuses
 
   def self.register(username, password)
-    if User[:username => username] || %w(list new).include?(username)
+    if User[:username => username] || %w(list new create destroy).include?(username)
       nil
     else
       user = User.new

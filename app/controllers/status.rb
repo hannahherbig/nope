@@ -12,8 +12,7 @@ Nope.controllers :status do
         redirect url_for(:index)
       end
     else
-      flash[:error] = "You need to be logged in to do that."
-      redirect url_for(:session, :new)
+      need_login!
     end
   end
 
@@ -35,8 +34,7 @@ Nope.controllers :status do
         redirect url_for(:index)
       end
     else
-      flash[:error] = "You need to be logged in to do that."
-      redirect url_for(:session, :new)
+      need_login!
     end
   end
 end

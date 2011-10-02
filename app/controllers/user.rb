@@ -25,8 +25,10 @@ Nope.controllers :user do
 
   get :destroy do
     if current_user
-      Status[:user => current_user].delete
+      statuses = Status[:user => current_user]
+      statuses.delete if statuses
       current_user.delete
+
       session[:user_id] = nil
       flash[:notice] = "User deleted"
       redirect url_for(:index)

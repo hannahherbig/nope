@@ -1,0 +1,4 @@
+= form_for :status, :create do |f|
+  = f.error_messages
+  = f.text_field_block :text
+  = f.submit_block "Post"

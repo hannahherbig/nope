@@ -1,0 +1,10 @@
+%table
+  %tr
+    %th User
+    %th Text
+    %th Time
+  - statuses.each do |status|
+    %tr
+      %td= link_to status.user.username, url_for(:user, :index, :username => status.user.username)
+      %td= status.text
+      %td= status.created_at

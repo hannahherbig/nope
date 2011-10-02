@@ -1,0 +1,18 @@
+!!!
+%html
+  %head
+    %title nope - #{title}
+    = stylesheet_link_tag :application
+  %body
+    #container
+      %h1 #{title}
+      = flash_tag :notice
+      = flash_tag :error
+      = yield
+      - unless current_user
+        = link_to 'Log in', url_for(:session, :new)
+        = link_to 'Sign up', url_for(:user, :new)
+      - else
+        = link_to 'Log out', url_for(:session, :destroy)
+        = link_to 'Post new', url_for(:status, :new)
+      = link_to 'Users', url_for(:user, :list)

@@ -26,7 +26,7 @@ Nope.controllers :status do
       raise 404
     elsif current_user
       if status.user == current_user
-        status.delete
+        status.destroy
         flash[:notice] = "Status deleted"
         redirect url_for(:index)
       else

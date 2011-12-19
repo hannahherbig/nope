@@ -1,6 +1,6 @@
 %table
   - if users.empty?
-    %p No users to show.  You could be the first!
+    %p No users to show.
   - else
     %tr
       %th Username
@@ -8,6 +8,6 @@
       - users.each do |user|
         %tr
           %td= link_to user.username, url_for(:user, :index, :username => user.username)
-          %td= user.created_at
+          %td= user.created_at.to_s(:short)
           - if user == current_user
             %td= link_to "Delete", url_for(:user, :destroy)

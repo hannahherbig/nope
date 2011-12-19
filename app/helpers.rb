@@ -13,26 +13,22 @@ Nope.helpers do
 
   def statuses
     if @statuses
-      @statuses.order(:created_at).all
+      @statuses.eager(:user).order(:created_at.desc).all
     else
-      Status.order(:created_at).all
+      Status.eager(:user).order(:created_at.desc).all
     end
   end
 
   def users
     if @users
-      @users.order(:created_at).all
+      @users.order(:created_at.desc).all
     else
-      User.order(:created_at).all
+      User.order(:created_at.desc).all
     end
   end
 
   def need_login!
     flash[:error] = "You need to be logged in to do that."
     redirect url_for(:session, :new)
-  end
-
-  def random_sentence
-    Nokogiri::HTML(open("http://watchout4snakes.com/CreativityTools/RandomSentence/RandomSentence.aspx")).css('.randomSentence').first.text
   end
 end

@@ -1,8 +1,8 @@
 class User < Sequel::Model
   one_to_many :statuses
 
-  def before_create
-    self.created_at = Time.now
+  def before_destroy
+    statuses.each { |s| s.destroy }
   end
 
   def self.register(username, password)

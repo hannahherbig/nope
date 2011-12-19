@@ -25,9 +25,7 @@ Nope.controllers :user do
 
   get :destroy do
     if current_user
-      statuses = Status[:user => current_user]
-      statuses.delete if statuses
-      current_user.delete
+      current_user.destroy
 
       session[:user_id] = nil
       flash[:notice] = "User deleted"
@@ -41,7 +39,7 @@ Nope.controllers :user do
     title "User timeline"
     user = User[:username => params[:username]]
     if user
-      @statuses = Status.where(:user => user)
+      @statuses = Status.filter(:user => user)
       render "status/list"
     else
       error 404

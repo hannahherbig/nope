@@ -1,6 +1,6 @@
 %table
   - if statuses.empty?
-    %p No statuses to show.  Yours could be the first!
+    %p No statuses to show.
   - else
     %tr
       %th Username
@@ -10,6 +10,6 @@
       %tr
         %td= link_to status.user.username, url_for(:user, :index, :username => status.user.username)
         %td= status.text
-        %td= status.created_at
+        %td= status.created_at.to_s(:short)
         - if status.user == current_user
           %td= link_to "Delete", url_for(:status, :destroy, :id => status.id)
